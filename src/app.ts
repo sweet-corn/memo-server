@@ -5,7 +5,7 @@ import memoRoutes from './routes/memo';
 import db from './config/db';
 
 const app = new Koa();
-
+const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser());
 app.use(memoRoutes.routes());
@@ -16,6 +16,6 @@ db.sync({ alter: true }).then(() => {
   console.log('✅ MySQL 连接成功，表已同步');
 });
 
-app.listen(3000, () => {
-  console.log('🚀 Koa 服务已启动：http://localhost:3000');
+app.listen(port, () => {
+  console.log(`🚀 Koa 服务已启动：http://localhost:${port}`);
 });

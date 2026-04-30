@@ -10,7 +10,7 @@ const DB_CONFIG = {
   PGDATA: "/var/lib/postgresql/data/pgdata",
   PGDATABASE: "railway",//对应DB_NAME
   PGHOST: "postgres.railway.internal",//DB_HOST
-  PGPASSWORD:"IGUagfTnyYNHTqMZdzkfxFSPfjmsitXz",//DB_PWD
+  PGPASSWORD:"dKXyQSSZjabrimDWNFordzwHDIJAkbGx",//DB_PWD
   PGPORT:5432,//DB_PORT
   PGUSER:"postgres",//DB_USER
 };
