@@ -33,9 +33,21 @@ const sequelize = new Sequelize(
   DB_NAME,
   process.env.DB_USER!,
   process.env.DB_PWD!,
+  // {
+  //   host: process.env.DB_HOST,
+  //   dialect: 'mysql',
+  //   logging: false
+  // },
   {
     host: process.env.DB_HOST,
-    dialect: 'mysql',
+    dialect: 'postgres',
+    port: parseInt(process.env.DB_PORT || '5432'), // PostgreSQL 默认 5432
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Railway 必须加这个
+      }
+    },
     logging: false
   }
 );
