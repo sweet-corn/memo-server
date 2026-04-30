@@ -5,6 +5,16 @@ dotenv.config();
 
 const DB_NAME = process.env.DB_NAME!;
 
+// 数据库配置 railway
+const DB_CONFIG = {
+  PGDATA: "/var/lib/postgresql/data/pgdata",
+  PGDATABASE: "railway",//对应DB_NAME
+  PGHOST: "postgres.railway.internal",//DB_HOST
+  PGPASSWORD:"IGUagfTnyYNHTqMZdzkfxFSPfjmsitXz",//DB_PWD
+  PGPORT:5432,//DB_PORT
+  PGUSER:"postgres",//DB_USER
+};
+
 // 先创建数据库（不存在就创建）
 const initDB = async () => {
   const connection = await mysql.createConnection({
