@@ -6,7 +6,11 @@ import db from './config/db';
 
 const app = new Koa();
 const port = process.env.PORT || 3000;
-app.use(cors());
+app.use(cors({
+  origin: '*', // 允许所有来源，也可以指定你的桌面端地址
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser());
 app.use(memoRoutes.routes());
 app.use(memoRoutes.allowedMethods());
