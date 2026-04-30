@@ -6,11 +6,25 @@ import db from './config/db';
 
 const app = new Koa();
 const port = process.env.PORT || 3000;
-app.use(cors({
-  origin: '*', // 允许所有来源，也可以指定你的桌面端地址
-  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowHeaders: ['Content-Type', 'Authorization']
-}));
+// app.use(cors({
+//   origin: '*', // 允许所有来源，也可以指定你的桌面端地址
+//   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowHeaders: ['Content-Type', 'Authorization']
+// }));
+// 手动配置跨域（比第三方库更稳定，不会因为依赖问题崩溃）
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // 处理 OPTIONS 预检请求
+  if (ctx.method === 'OPTIONS') {
+    ctx.status = 204;
+    return;
+  }
+  
+  await next();
+});
 app.use(bodyParser());
 app.use(memoRoutes.routes());
 app.use(memoRoutes.allowedMethods());
