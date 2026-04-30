@@ -5,7 +5,7 @@ import memoRoutes from './routes/memo';
 import db from './config/db';
 
 const app = new Koa();
-const port = process.env.PORT || 3000;
+const port = 3000;
 app.use(cors());
 // 手动配置跨域（比第三方库更稳定，不会因为依赖问题崩溃）
 // app.use(async (ctx, next) => {
