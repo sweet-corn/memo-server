@@ -108,7 +108,7 @@ const Record = sequelize.define('Record', {
     comment: '记录日期（格式：YYYY-MM-DD）'
   }
 }, {
-  tableName: 'memos', // 表名，和你的 user 表保持风格
+  tableName: 'records', // 表名，和你的 user 表保持风格
   timestamps: true // 自动生成 createdAt/updatedAt，方便排序
 });
 
