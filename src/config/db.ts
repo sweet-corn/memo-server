@@ -82,6 +82,35 @@ const User = sequelize.define('User', {
     allowNull: false
   }
 });
+const Record = sequelize.define('Record', {
+  // 记录类型：日常/体重
+  type: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: '记录类型：daily/weight'
+  },
+  // 内容：文字或体重数字
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    comment: '记录内容'
+  },
+  // 微信昵称
+  nickname: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: '发布者昵称'
+  },
+  // 记录日期（用于显示）
+  date: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    comment: '记录日期（格式：YYYY-MM-DD）'
+  }
+}, {
+  tableName: 'memos', // 表名，和你的 user 表保持风格
+  timestamps: true // 自动生成 createdAt/updatedAt，方便排序
+});
 
 // ------------------------------
 // 自动同步表结构！！！
@@ -92,4 +121,4 @@ sequelize.sync()
   .catch(err => console.error('❌ 同步失败：', err));
 
 export default sequelize;
-export { User };
+export { User, Record };

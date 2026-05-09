@@ -1,5 +1,5 @@
 import Router from 'koa-router';
-import { getMemoList, getMemoById,createMemo, updateMemo, deleteMemo } from '../controller/memoController';
+import { getMemoList, getMemoById,createMemo, updateMemo, deleteMemo, getRecordList, createRecord } from '../controller/memoController';
 
 const router = new Router(); // 这里不要写 prefix！
 
@@ -27,5 +27,10 @@ router.delete('/api/memo/delete/:id', async (ctx) => {
   await deleteMemo(Number(ctx.params.id));
   ctx.body = { code: 0, msg: '删除成功' };
 });
+//小程序接口
+// 获取列表（小程序GET请求）
+router.get('/api/list', getRecordList);
 
+// 新增记录（小程序POST请求）
+router.post('/api/add', createRecord);
 export default router;
