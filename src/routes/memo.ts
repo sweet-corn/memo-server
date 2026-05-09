@@ -1,5 +1,7 @@
 import Router from 'koa-router';
-import { getMemoList, getMemoById,createMemo, updateMemo, deleteMemo, getRecordList, createRecord } from '../controller/memoController';
+import { getMemoList, getMemoById,createMemo, updateMemo, deleteMemo } from '../controller/memoController';
+import { getRecordList, createRecord } from '../controller/RecordController';
+
 
 const router = new Router(); // 这里不要写 prefix！
 
